@@ -11,6 +11,20 @@
 const http = require("http");
 const fs = require("fs")
 
+const express = require("express");
+// const { publicDecrypt } = require("crypto");
+const app = express();
+
+app.use(express.static("../public"))
+// app.use(express.static(publicDecrypt))
+
+
+app.use(express.static('public'));
+
+
+
+
+
 http.createServer(function(req, res){
 
     // only read file 
@@ -21,7 +35,7 @@ http.createServer(function(req, res){
     // })
     // end only read file 
     if(req.url=="/home"){
-            fs.readFile("index.html", function(error, data){
+            fs.readFile("public/index.html", function(error, data){
                 res.writeHead(200,{"content-type":"text/html"});
                 res.write(data);
                 res.end()
